@@ -1,0 +1,10 @@
+{
+  "name": "workflow-monitor-desktop",
+  "productName": "工作流观察",
+  "version": "0.7.5",
+  "private": true,
+  "main": "main.cjs",
+  "description": "可独立运行、可回溯的本机工作流悬浮面板",
+  "engines": {"node": ">=22"},
+  "runtime": {"electron": "45.2.1", "source": "Existing official Electron distribution; copied without modifying the owning application"}
+}

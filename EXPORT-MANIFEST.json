@@ -1,0 +1,452 @@
+{
+  "schema": "workflow-github-export/1",
+  "generatedAt": "2026-11-09T07:06:53.343Z",
+  "qualification": "source-export-only",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 256,
+      "sha256": "ab0745cb84b336ff284a809fc9b8c7890fe94faa1d92208f1bcfbe0b9e84f928"
+    },
+    {
+      "path": "打开预览.cmd",
+      "bytes": 57,
+      "sha256": "d98d2344ec9bf264f8404c77973d8d3f217da5b99f00e233092f7c986e5fc11c"
+    },
+    {
+      "path": "打开预览.ps1",
+      "bytes": 159,
+      "sha256": "e5bfb9bf0b49cb83d8308522ce67601aa96780876ee3f043d6b2c948559a88c4"
+    },
+    {
+      "path": "停止预览.cmd",
+      "bytes": 56,
+      "sha256": "3aa3571b863fb8cd8cb23a84b3e5efa1871034623023d6a5bf41d73c41fe0779"
+    },
+    {
+      "path": "停止预览.ps1",
+      "bytes": 156,
+      "sha256": "9a0bb0c96549556ff150a38b5389185332a6909f72a6303bfa6e5509e722d3a8"
+    },
+    {
+      "path": "desktop/active-tasks.cjs",
+      "bytes": 14669,
+      "sha256": "7ad168a759b419455e6d8f03acdc02fb16d8d84bffa1b9e350d5511761ca89ef"
+    },
+    {
+      "path": "desktop/contract.cjs",
+      "bytes": 1359,
+      "sha256": "16672db3af6451fc58621f88d310a9fbabedd29c2dd42793278f6d28bea75b47"
+    },
+    {
+      "path": "desktop/dock-layout.cjs",
+      "bytes": 574,
+      "sha256": "4f23ff628c8837c27acd0e0b8ae478d287a640f0ab01fe5155871b013c877f30"
+    },
+    {
+      "path": "desktop/dock.css",
+      "bytes": 7488,
+      "sha256": "adb96617f062eb5a6632bcda9e2f11dd106a11c52e32faab84a0e0a369b82966"
+    },
+    {
+      "path": "desktop/dock.html",
+      "bytes": 2246,
+      "sha256": "974a33256a14dcaf5bac89dc11f69b9a20cd1c37606adf4de790365b1613d7b8"
+    },
+    {
+      "path": "desktop/dock.mjs",
+      "bytes": 15036,
+      "sha256": "544b782360e10a62571e7590f55faac42713082fbb4ff99ee8bd5f9f0b71f072"
+    },
+    {
+      "path": "desktop/index.html",
+      "bytes": 2037,
+      "sha256": "e86d14c3d94982b92e0f602978790615eb5324cdd1dd01e4b21de64807726987"
+    },
+    {
+      "path": "desktop/main.cjs",
+      "bytes": 15294,
+      "sha256": "5f0e4d0995f91ed6bdaacf88a3dd3a6c8c111771641cceaf35f1620dece6fe3e"
+    },
+    {
+      "path": "desktop/package.json",
+      "bytes": 388,
+      "sha256": "1ccc34df3e3e7e7475983386d933bdb375d7581f2de7e760887edd50aea06411"
+    },
+    {
+      "path": "desktop/preload.cjs",
+      "bytes": 963,
+      "sha256": "428dfb4e594dcad66d5fd479187f59b7ece60c82805345294a202f89bb2d61c6"
+    },
+    {
+      "path": "desktop/recent-task-feed.cjs",
+      "bytes": 3814,
+      "sha256": "8028897dea8f3d5addabad00f232598ab83de2248f96d3ee64ba0756f78f2c76"
+    },
+    {
+      "path": "desktop/renderer.mjs",
+      "bytes": 4652,
+      "sha256": "1877d49a7c1d23eb215559e5c0aab40755327320c6c8703e7d7efcf80d25770f"
+    },
+    {
+      "path": "desktop/service.cjs",
+      "bytes": 3053,
+      "sha256": "5ff8ec78ad2c69fa0e347cbba95c7aee1b06e288397d35aa700dd0e289c74b40"
+    },
+    {
+      "path": "desktop/shell.css",
+      "bytes": 3957,
+      "sha256": "ee72475c9569b97d86f2cd2cd728a4b7a8b02e426c13b1e8aded167d86743e9f"
+    },
+    {
+      "path": "desktop/shutdown.cjs",
+      "bytes": 504,
+      "sha256": "5786c54d91262e7289aae5b14af3de9d812c7f9be3ce6382d18aed1f96ce2012"
+    },
+    {
+      "path": "desktop/task-artifacts.cjs",
+      "bytes": 5589,
+      "sha256": "46c4861d2ea9ce31b51045c8e6f56736a3db0a2fc70d95a2114788ff6c8f3055"
+    },
+    {
+      "path": "desktop/task-dock.cjs",
+      "bytes": 3670,
+      "sha256": "23da6c0dd2f6901709dfb39b1e9ef626f93841c4fe051edd86e6c98bc288ad39"
+    },
+    {
+      "path": "desktop/window-state.cjs",
+      "bytes": 3313,
+      "sha256": "119fb7c7a506322940187ec46df006b27a4649536edcc1e99569b74f5bacf526"
+    },
+    {
+      "path": "desktop/worker.cjs",
+      "bytes": 2035,
+      "sha256": "b8ae535712fff21d73f91db7834c96b4b390fc1e7532650643a82470ac796233"
+    },
+    {
+      "path": "docs/github/defaults.json",
+      "bytes": 216,
+      "sha256": "7c9040a4f99142baa1f3c92357d46bb5c6db124c186885ebeb764df23b640744"
+    },
+    {
+      "path": "docs/github/README.md",
+      "bytes": 3871,
+      "sha256": "03eca4f3b1d47c35bc708e86a2b4f54b73b1b70892bef354c699e4bf1a744876"
+    },
+    {
+      "path": "docs/github/STATUS.md",
+      "bytes": 2867,
+      "sha256": "3baa9f5569b33e269d182ea84fa96b509394882808954c7cd1be2b78bc3e1734"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 5850,
+      "sha256": "1a7e01a4e3c7669056a0514a224f193c3e46091ddc83abb98d8456802a52ebea"
+    },
+    {
+      "path": "package.json",
+      "bytes": 798,
+      "sha256": "487d362aefdc8c768d353a279a4b03ae2fd4d1c915113a4c6d82edcc7715c7e7"
+    },
+    {
+      "path": "plugin/activity-ui.mjs",
+      "bytes": 4030,
+      "sha256": "4746d66476aef725b948416d0f9308c6536e1c4fa52ca7c3a03b03bda2ac292b"
+    },
+    {
+      "path": "plugin/activity.cjs",
+      "bytes": 1376,
+      "sha256": "e5aea5855157317ee636c3669617e183bba778ce0afd8453b924d545cef08409"
+    },
+    {
+      "path": "plugin/backend.cjs",
+      "bytes": 12429,
+      "sha256": "f7f41e888b190057ec879422a7ca71bccc67d5c26b8ba9ddc5616518a4b9e9c9"
+    },
+    {
+      "path": "plugin/catalog-guide.cjs",
+      "bytes": 19173,
+      "sha256": "95c7df9ff17488fe44dac6807d7c4d6da25cba479320d56ece16f21bc254df95"
+    },
+    {
+      "path": "plugin/catalog-ui.mjs",
+      "bytes": 21942,
+      "sha256": "72b7cdfa6fe04bb8cdcae99fcc320f3943b750311e02d63056a91cac2f6a87dc"
+    },
+    {
+      "path": "plugin/catalog.cjs",
+      "bytes": 22079,
+      "sha256": "135d18918db155c3c1f4e4cdc3ca5156f6671a7b145670f51d4b1daa52770acf"
+    },
+    {
+      "path": "plugin/clipboard.mjs",
+      "bytes": 525,
+      "sha256": "445fa9bc809f89aaf8517b790f6e334d889284c383684378a464874bedf92db5"
+    },
+    {
+      "path": "plugin/core.cjs",
+      "bytes": 22144,
+      "sha256": "aedb30e2a2e09a11b679827ed4a0f8c2902c457e424d75b3a65ccc2f9c55c3a1"
+    },
+    {
+      "path": "plugin/defaults.json",
+      "bytes": 216,
+      "sha256": "7c9040a4f99142baa1f3c92357d46bb5c6db124c186885ebeb764df23b640744"
+    },
+    {
+      "path": "plugin/FUSE-LICENSE.txt",
+      "bytes": 11343,
+      "sha256": "cc807e3caa26cdee316bab2ff6fdb508a2f619b74959fe59e513ef6e61635ebe"
+    },
+    {
+      "path": "plugin/fuse.basic-7.5.0.min.mjs",
+      "bytes": 19308,
+      "sha256": "8d0ff71fbe94cadc319be0c559c64fe7ce2754afe47c9f0a67579d4112c6b62b"
+    },
+    {
+      "path": "plugin/history.cjs",
+      "bytes": 6528,
+      "sha256": "bfcc74def02d35851d0b1cc8bc3acfeeb34bb13584cd5051871612de10c658b0"
+    },
+    {
+      "path": "plugin/manager.cjs",
+      "bytes": 4831,
+      "sha256": "c61ba68bc3363463ed5150aa4ed3df02c4d5c63544f41f093fe51b5d254013ca"
+    },
+    {
+      "path": "plugin/manifest.json",
+      "bytes": 1377,
+      "sha256": "dbadd1ef19c48df07b485aef6058377dad5009c315ccb248811db86637e18fc8"
+    },
+    {
+      "path": "plugin/panel.css",
+      "bytes": 22541,
+      "sha256": "2130833ad167bc642a9271db6827669225c2aa0d5736c488e2d10ce87b91dc6c"
+    },
+    {
+      "path": "plugin/quick-ui.mjs",
+      "bytes": 7378,
+      "sha256": "70de9b74f54b2e0b7a10643048594bc96a84f17af6e43f0c5c176d994946a5e4"
+    },
+    {
+      "path": "plugin/README.md",
+      "bytes": 4881,
+      "sha256": "0aa84a413aadb3ef0b6cd1c51a95e5fcbfc5d467f49ac2f536e0e8178bf2280a"
+    },
+    {
+      "path": "plugin/resources-ui.mjs",
+      "bytes": 4360,
+      "sha256": "033d3778291cb784d9657ecbfef8f87b2cd3814305adec6761add4106a2aaa8c"
+    },
+    {
+      "path": "plugin/resources.cjs",
+      "bytes": 2593,
+      "sha256": "3aec9d8733e324b84758fa9724321560d8ad11eadbd5526b6c18b0383f8eb0f0"
+    },
+    {
+      "path": "plugin/search.mjs",
+      "bytes": 2307,
+      "sha256": "865b05fa46267341acd78adaddd18ea506c414cefcd1cbbbeb96c86863aa3d15"
+    },
+    {
+      "path": "plugin/targets.mjs",
+      "bytes": 3305,
+      "sha256": "cc71f012575db2bf2d375c4a323ee4ef82e3351024d0414dd99fcb25aa92e811"
+    },
+    {
+      "path": "plugin/tasks.cjs",
+      "bytes": 12547,
+      "sha256": "22bab61faf796613366819ba1b60228d83de3157378b92c9f739f12359450a49"
+    },
+    {
+      "path": "plugin/THIRD_PARTY.md",
+      "bytes": 820,
+      "sha256": "225d2278c144b752155ee986aa592575d3a6898939db5675ee614559bf5ffe43"
+    },
+    {
+      "path": "plugin/ui.mjs",
+      "bytes": 32346,
+      "sha256": "28af3066f8527fe228856646f1b7e29cc8bfad968c1efe4ef689e03f22489619"
+    },
+    {
+      "path": "plugin/workflows-ui.mjs",
+      "bytes": 5609,
+      "sha256": "cda26e59ca9507103acb20c9e608ea1842d5be9a1f3f901fe5fafff677cb7358"
+    },
+    {
+      "path": "plugin/workflows.cjs",
+      "bytes": 7650,
+      "sha256": "eeff823876f0dd6a242054eb6d05d53737bfdb5d03e9bef02d746382d479133d"
+    },
+    {
+      "path": "plugin/workspace.cjs",
+      "bytes": 3096,
+      "sha256": "47d390405e4c8e4867a61bfbe37ef1b26bc0e61e450251ed762159956bbf0954"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3871,
+      "sha256": "03eca4f3b1d47c35bc708e86a2b4f54b73b1b70892bef354c699e4bf1a744876"
+    },
+    {
+      "path": "STATUS.md",
+      "bytes": 2867,
+      "sha256": "3baa9f5569b33e269d182ea84fa96b509394882808954c7cd1be2b78bc3e1734"
+    },
+    {
+      "path": "tests/active-tasks.test.cjs",
+      "bytes": 6699,
+      "sha256": "32d110c191e606ecf4bceceea494d3bec66a91505dc3fa18f09d368d4a42662e"
+    },
+    {
+      "path": "tests/catalog.test.cjs",
+      "bytes": 8416,
+      "sha256": "051d482476f8ca03afb7f8ab0175bf446e1ebd078bae10cfa990b6306d84c8e4"
+    },
+    {
+      "path": "tests/desktop.test.cjs",
+      "bytes": 8643,
+      "sha256": "ceaa2c976f3300c907b77d8ab4237690a79673f237fe04d133c2e89b8e2ac046"
+    },
+    {
+      "path": "tests/export-github.test.cjs",
+      "bytes": 6482,
+      "sha256": "fb3e6f3469324d9637f706ffd2b6db1a329dbbbc75b3b1a9b36d7434252a39ab"
+    },
+    {
+      "path": "tests/monitor.test.cjs",
+      "bytes": 9755,
+      "sha256": "c1d6569d8b19780e14714ab0792afc1d9125a999f9687dd8923e95a9d5eb3532"
+    },
+    {
+      "path": "tests/optimization.test.cjs",
+      "bytes": 19058,
+      "sha256": "c7c107961795403d298139b345c7b65c9482793683a986316296103410a74acd"
+    },
+    {
+      "path": "tests/recent-task-feed.test.cjs",
+      "bytes": 1779,
+      "sha256": "bf0fecd553c5a17c4b93a78d1379e1e5078a856badac13e317a2b446d9e9f990"
+    },
+    {
+      "path": "tests/tasks.test.cjs",
+      "bytes": 8016,
+      "sha256": "9750d815934c36739e1b1e089bea834548d19afc1925a555b289c05ce549cf39"
+    },
+    {
+      "path": "tools/build-desktop.cjs",
+      "bytes": 7188,
+      "sha256": "57e9abc6a83ac4e4c52e7ef653d61e273c679d9149b149e0f59c5258185df24f"
+    },
+    {
+      "path": "tools/build.cjs",
+      "bytes": 1381,
+      "sha256": "a564c1bfdfb7f62583ea300586cc5d4ffb774286269d287ba28fc3e4d0fddfbe"
+    },
+    {
+      "path": "tools/desktop-history.cjs",
+      "bytes": 5457,
+      "sha256": "bc71a0a820efd12e8fda52a6948d6734099125500edce22b2aee7f4cb79c4c21"
+    },
+    {
+      "path": "tools/export-github.cjs",
+      "bytes": 7590,
+      "sha256": "25a349906240f96fd562a49c43ae00805305e2653ff93872e6025c1cadd0559b"
+    },
+    {
+      "path": "tools/freeze-desktop.cjs",
+      "bytes": 3149,
+      "sha256": "70535b71e41f88f1ca1c27fd3f9c6ab635bf8847090b3606cd73374a0c8de57d"
+    },
+    {
+      "path": "tools/preview-control.cjs",
+      "bytes": 3519,
+      "sha256": "8bb9b601e0a94afc80687ea452645de391e55e5772b4160178a3a3db98104866"
+    },
+    {
+      "path": "tools/preview-state.cjs",
+      "bytes": 3868,
+      "sha256": "626010b3ed0c17ff5e855300bd15e8ed0e502055f9afdefe3d96b25a8ff48be5"
+    },
+    {
+      "path": "tools/preview.cjs",
+      "bytes": 6554,
+      "sha256": "fb7f5f76189b53fe759d500c0f2b053bda6c06367cd80459bbda9815283597bc"
+    },
+    {
+      "path": "tools/sample.cjs",
+      "bytes": 1151,
+      "sha256": "466fc239101b3a73ed58d36d62bb14341ba6e1311b8ee2218ff147914a5d8e7e"
+    },
+    {
+      "path": "tools/ui-scenario.cjs",
+      "bytes": 3625,
+      "sha256": "61fa4b85e5e0cecc6606c23f04d717bde4b5749e6bcd14c09d42d543e9ceb56e"
+    },
+    {
+      "path": "tools/vendor-fuse.cjs",
+      "bytes": 2463,
+      "sha256": "e0cad09811187cab536379120f898db31870854c29ad839c97235e71d2b81c8a"
+    },
+    {
+      "path": "vendor/fuse-7.5.0/receipt.json",
+      "bytes": 748,
+      "sha256": "61608da40bef38a44f67dbfbb29a228b7b2b4a24b8b8c755107beef8bc9917e2"
+    },
+    {
+      "path": "vendor/NOTICE.md",
+      "bytes": 567,
+      "sha256": "0954033e475ae63ce203452169918fea25b63509bf82c8322526737b520d5511"
+    },
+    {
+      "path": "vendor/token-monitor-0.86.0/package.json",
+      "bytes": 881,
+      "sha256": "2655406c9c8a16d7ff8f267d012f19527c145a03ded86317169906bf3f23a1f1"
+    },
+    {
+      "path": "vendor/token-monitor-0.86.0/src/electron/plugins/contracts.js",
+      "bytes": 566,
+      "sha256": "bbe203fb9fa323ac3b47d0e25abb1fd0b7dbfa4f060d6bf7f8d2ad0b7eca4c1f"
+    },
+    {
+      "path": "vendor/token-monitor-0.86.0/src/electron/plugins/package.js",
+      "bytes": 6541,
+      "sha256": "632166054a165326f42d3abf1a8aabeee6ea470645509c587cf5672a20bc2372"
+    },
+    {
+      "path": "vendor/token-monitor-0.86.0/src/electron/plugins/types.js",
+      "bytes": 786,
+      "sha256": "2b42b316d0563b78ffbee3bb8e8df614dac67d2c0d3903c4d48e19e08f9a5ea0"
+    },
+    {
+      "path": "vendor/token-monitor-0.86.0/src/shared/plugins/appearance.js",
+      "bytes": 1413,
+      "sha256": "c2cedc3a7243b8a1823fba7432cda5cd183c7c447c0589d0cec0d306497f7eb4"
+    },
+    {
+      "path": "vendor/token-monitor-0.86.0/src/shared/plugins/identityIcon.js",
+      "bytes": 2808,
+      "sha256": "e6fda6d61ace5e3ca0e670f95107e5aafa6d788dc6e97846a76df2aa1813a07c"
+    },
+    {
+      "path": "vendor/token-monitor-0.86.0/src/shared/plugins/localized.js",
+      "bytes": 2220,
+      "sha256": "7815c897ca90924a3f51591c1d644db76074e746a9e4c233bc64de53dcac7e86"
+    },
+    {
+      "path": "vendor/token-monitor-0.86.0/src/shared/plugins/manifest.js",
+      "bytes": 9903,
+      "sha256": "b593aa806698776c99dd49ecafbb0c72e69e0f6bb748890d945886ebcd37f079"
+    },
+    {
+      "path": "vendor/token-monitor-0.86.0/src/shared/plugins/settings.js",
+      "bytes": 6847,
+      "sha256": "630a23d632db2f8af3ef1ad7e5c84878e5b88755d9b2625e26b0a63cc0b1a3b6"
+    },
+    {
+      "path": "vendor/TOKEN-MONITOR-LICENSE.txt",
+      "bytes": 1062,
+      "sha256": "250136de456c31d659e54c1804c43a27dadad175336b67226e9509d6310f923c"
+    }
+  ]
+}
