@@ -1,6 +1,6 @@
 {
   "schema": "workflow-github-export/1",
-  "generatedAt": "2026-11-09T07:14:08.272Z",
+  "generatedAt": "2026-11-09T07:16:32.291Z",
   "qualification": "source-export-only",
   "files": [
     {
@@ -130,8 +130,8 @@
     },
     {
       "path": "docs/github/README.md",
-      "bytes": 4281,
-      "sha256": "a3e888a5b0c7b64db4276ac612d80206985dcdfe2dd80301082c150f1e1a1aec"
+      "bytes": 4959,
+      "sha256": "ba391a6d43f87e2caae6457a7375b0c460882a939be5b8ee6aa338e45e6c9007"
     },
     {
       "path": "docs/github/STATUS.md",
@@ -139,14 +139,19 @@
       "sha256": "cb2af080e33a876a1a398c2acda05829343a8bbd8226360064d0d1e54b790919"
     },
     {
+      "path": "LICENSE",
+      "bytes": 1067,
+      "sha256": "529e01eb8c3129f845c9c3af1122890359a31f995e03358b75f736ca2babe42f"
+    },
+    {
       "path": "package-lock.json",
-      "bytes": 5850,
-      "sha256": "1a7e01a4e3c7669056a0514a224f193c3e46091ddc83abb98d8456802a52ebea"
+      "bytes": 5855,
+      "sha256": "1ea2c95f333d5acaa523cfbeee968a00fd7e711b05f49bc2b9071345a4428485"
     },
     {
       "path": "package.json",
-      "bytes": 798,
-      "sha256": "487d362aefdc8c768d353a279a4b03ae2fd4d1c915113a4c6d82edcc7715c7e7"
+      "bytes": 803,
+      "sha256": "f5fb84dab49ebf73aabd4d1e44b9085837a916ff377bbaa689c97b85fd8b344c"
     },
     {
       "path": "plugin/activity-ui.mjs",
@@ -285,8 +290,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 4281,
-      "sha256": "a3e888a5b0c7b64db4276ac612d80206985dcdfe2dd80301082c150f1e1a1aec"
+      "bytes": 4959,
+      "sha256": "ba391a6d43f87e2caae6457a7375b0c460882a939be5b8ee6aa338e45e6c9007"
     },
     {
       "path": "STATUS.md",

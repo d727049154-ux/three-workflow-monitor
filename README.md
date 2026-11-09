@@ -4,6 +4,14 @@ Windows 本机工作流观察工具。独立桌面版 v0.7.5 提供侧边任务�
 
 公开源码使用空连接配置，不附带作者的聊天、项目、技能资源清单或观察历史。首次启动后，在完整面板的“关联”页填写自己的工程和连接，或新建工作流、登记资源。只有配置并可访问的本机来源会被读取。
 
+## 系统支持与许可
+
+桌面版仅支持 Windows（10/11）。构建、预览和启动入口依赖 Windows 路径、`.ps1`/`.cmd` 脚本与 Electron 原生外壳；在 macOS 或 Linux 上只能阅读源码、运行单元测试，无法构建或启动桌面程序。Token Monitor 插件版同样面向 Windows 上的宿主程序。
+
+版本号有两处：根目录 `package.json` 的 `0.5.0` 指 Token Monitor 插件版，桌面版版本记录在 `desktop/package.json`（当前 `0.7.5`）。
+
+本项目以 [MIT 许可证](LICENSE) 发布。随附第三方组件的许可与来源见 [plugin/THIRD_PARTY.md](plugin/THIRD_PARTY.md) 与 [vendor/NOTICE.md](vendor/NOTICE.md)。
+
 ## 构建和运行
 
 使用 Windows、Node.js 22.12+ 与 npm。Electron 和打包校验依赖以 package.json 和锁文件为准。
