@@ -6,13 +6,16 @@ Windows 本机工作流观察工具。独立桌面版 v0.7.5 提供侧边任务�
 
 ## 构建和运行
 
-使用 Windows、Node.js 22+ 与 npm。Electron 和打包校验依赖以 package.json 和锁文件为准。
+使用 Windows、Node.js 22.12+ 与 npm。Electron 和打包校验依赖以 package.json 和锁文件为准。
 
 ```powershell
 npm ci
+npx install-electron
 npm test
 npm run build:desktop
 ```
+
+`npm ci` 只安装依赖包本身。当前 Electron 版本不提供安装期脚本，运行时二进制需要单独执行 `npx install-electron` 下载到 `node_modules/electron/dist`，该步骤需要网络。若下载受限，可先设置 `ELECTRON_MIRROR`（例如 `https://npmmirror.com/mirrors/electron/`）再执行。跳过此步骤时，构建会直接提示缺少运行时。
 
 构建默认使用本项目 `node_modules/electron/dist` 中固定版本的官方 Electron。若已有同版本的官方 Electron 完整运行时，可将环境变量 `WORKFLOW_ELECTRON_DIST` 设置为该运行时目录，再执行构建；目录应包含 `electron.exe`、`version` 和配套文件，版本必须与桌面包记录一致。该覆盖仅指定运行时来源，不修改其所属应用。
 

@@ -12,7 +12,7 @@
 
 - 在本机导出的独立副本中依次完成 `npm ci`、56 项自动测试与 `npm run build:desktop`；该副本不含开发目录的 `data/`、`qa/`、`delivery/` 和历史记录。
 - 用空连接配置首次启动 v0.7.5：运行时收据为 `ready: true`、侧边条可见、`dockError` 为空、主窗口正常创建。缺省配置下侧边条不再报错。
-- 构建所需的 Electron 运行时取自本机已有的同版本官方目录，通过 `WORKFLOW_ELECTRON_DIST` 指定；`npm ci` 自动下载运行时这一步本机因网络未完成。
+- Electron 运行时由 `npx install-electron` 下载到项目内 `node_modules/electron/dist`（版本 45.2.1，经 `ELECTRON_MIRROR` 镜像取得），并在未设置 `WORKFLOW_ELECTRON_DIST` 的情况下只用该运行时完成一次构建。
 
 ## 未完成的验证
 
