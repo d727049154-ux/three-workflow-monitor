@@ -1,16 +1,7 @@
-# Local observations, connection lists and generated packages
-/data/
-/qa/
-/connections/
-/delivery/
-/desktop-app/
-/node_modules/
-/desktop/node_modules/
-/desktop/deployment.json
-/desktop/plugin/
-/desktop/assets/
+.dsh-write-probe
+.worktrees/
+/审查/*.zip
 .cache/
-*.lnk
 *.log
 .env
 .env.*

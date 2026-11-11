@@ -1,0 +1,14 @@
+{
+  "name": "workflow-monitor",
+  "version": "0.8.0",
+  "private": true,
+  "description": "本机工作流观察器的开发与构建入口",
+  "license": "MIT",
+  "scripts": {
+    "test": "node tools/test.cjs",
+    "build": "node tools/build.cjs"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>工作流观察</title><link rel="stylesheet" href="styles.css"></head>
+<body data-view="main">
+<header class="shell-header"><span class="brand">工作流观察</span><span class="local">本机</span><button id="pin" type="button" data-window-action="pin" aria-pressed="false">置顶</button><button id="compact" type="button" data-window-action="compact" aria-pressed="false">摘要</button><button id="show-dock" type="button">任务条</button><button id="refresh" type="button">刷新</button><button id="close" type="button" aria-label="关闭窗口">×</button></header>
+<nav class="app-nav" aria-label="主要页面"><button type="button" data-panel="observation" aria-current="page">实时任务</button><button type="button" data-panel="workflows">工作流</button><button type="button" data-panel="resources">资源</button><button type="button" data-panel="history">历史</button></nav><main><div id="notice" role="status" hidden></div><section id="observation"></section><section id="workflows"></section><section id="resources"></section><section id="history"></section></main>
+<footer><span id="observed">尚未接入来源</span><span>执行状态与成果验收分别记录</span><div class="window-options"><button type="button" data-window-action="help">帮助与恢复</button><button type="button" data-window-action="reset">找回窗口</button><button type="button" data-window-action="quit">退出应用</button></div></footer>
+<script type="module" src="app.mjs"></script>
+</body></html>
