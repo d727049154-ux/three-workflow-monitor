@@ -1,0 +1,20 @@
+# Local observations, connection lists and generated packages
+/data/
+/qa/
+/connections/
+/delivery/
+/desktop-app/
+/node_modules/
+/desktop/node_modules/
+/desktop/deployment.json
+/desktop/plugin/
+/desktop/assets/
+.cache/
+*.lnk
+*.log
+.env
+.env.*
+!.env.example
+
+# Native release output
+/dist/

@@ -1,0 +1,6 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>任务条</title><link rel="stylesheet" href="styles.css"></head>
+<body data-view="dock"><header class="shell-header"><span class="brand">任务条</span><button id="close" type="button" aria-label="隐藏任务条">×</button></header>
+<div class="rail-tools"><button id="expand" type="button" data-window-action="expand" aria-expanded="false">展开</button><button type="button" data-window-action="main">面板</button><button id="pin" type="button" data-window-action="pin" aria-pressed="true">置顶</button><button type="button" data-window-action="left" aria-label="贴屏幕左侧">左</button><button type="button" data-window-action="right" aria-label="贴屏幕右侧">右</button><button type="button" data-window-action="help">帮助</button><button id="refresh" type="button">刷新</button></div>
+<nav class="app-nav" aria-label="任务条页面"><button type="button" data-panel="observation" aria-current="page">任务</button><button type="button" data-panel="history">历史</button></nav>
+<main><div id="notice" role="status" hidden></div><section id="observation"></section><section id="history"></section></main><footer><span id="observed">尚未接入来源</span></footer><script type="module" src="app.mjs"></script></body></html>

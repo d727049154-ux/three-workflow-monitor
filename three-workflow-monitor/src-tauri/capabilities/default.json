@@ -1,0 +1,11 @@
+{
+  "identifier": "local-windows",
+  "windows": [
+    "main",
+    "dock"
+  ],
+  "permissions": [
+    "core:default",
+    "clipboard-manager:allow-write-text"
+  ]
+}
