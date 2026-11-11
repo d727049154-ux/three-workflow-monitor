@@ -457,10 +457,9 @@ async fn export_history(
     ids: Vec<String>,
 ) -> Result<Value, String> {
     local_window(&window)?;
-    let write_guard = writes.inner().begin()?;
+    let writes = writes.inner().clone();
     let backend = state.inner().clone();
     tauri::async_runtime::spawn_blocking(move || {
-        let _write_guard = write_guard;
         let value = backend
             .lock()
             .map_err(|_| "工作区调用已中断")?
@@ -476,6 +475,8 @@ async fn export_history(
             return Ok(json!({"cancelled":true}));
         };
         let path = path.into_path().map_err(|e| e.to_string())?;
+        // 选好文件名之后才登记写入，避免模态对话框长期占用写入名额阻塞退出。
+        let _write_guard = writes.begin()?;
         let bytes = serde_json::to_vec(&value).map_err(|e| e.to_string())?;
         let mut file = fs::OpenOptions::new()
             .write(true)
@@ -555,6 +556,15 @@ pub fn run() {
             export_history,
             window_action
         ])
-        .run(tauri::generate_context!())
-        .expect("工作流观察启动失败；请检查应用数据目录与 sources.json");
+        .build(tauri::generate_context!())
+        .expect("工作流观察启动失败；请检查应用数据目录与 sources.json")
+        .run(|_, event| {
+            if matches!(
+                event,
+                tauri::RunEvent::ExitRequested { .. } | tauri::RunEvent::Exit
+            ) {
+                // 事件循环即将/已经销毁：之后任何窗口操作都会让 tao panic。
+                windows::EXITING.store(true, std::sync::atomic::Ordering::SeqCst);
+            }
+        });
 }

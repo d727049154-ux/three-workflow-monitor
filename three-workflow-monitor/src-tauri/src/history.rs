@@ -228,6 +228,15 @@ fn append(
     let dir = data.join("history");
     fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
     let lock = dir.join("append.lock");
+    // 进程被强杀/关机后残留的锁会让历史永久停止追加；超过 120 秒的锁视为失效。
+    let stale = fs::metadata(&lock)
+        .and_then(|meta| meta.modified())
+        .ok()
+        .and_then(|time| time.elapsed().ok())
+        .is_some_and(|age| age >= std::time::Duration::from_secs(120));
+    if stale {
+        let _ = fs::remove_file(&lock);
+    }
     let _file = fs::OpenOptions::new()
         .write(true)
         .create_new(true)

@@ -132,7 +132,7 @@ export function mountHistory(container, subscribe, refresh, showLive, onMode) {
     show(mode, value) { if (mode !== 'live') retainedMode = mode; status.textContent = latest?.historyError || ''; if (mode === 'live') showLive(); else if (mode === 'list') showList(value); else showSnapshot(value); },
     fail(error) { status.textContent = String(error); },
   });
-  toolbar.append(button('实时任务', () => navigation.live()), button('历史观察', () => navigation.list()), button('保存当前观察', async () => { await call('historyCheckpoint'); await refresh(); notify('已保存当前观察，可在历史列表查看'); }), button('校验历史', async () => { const result = await call('historyVerify'); notify(`历史校验通过：${result.recordCount} 条记录`); }));
+  toolbar.append(button('实时任务', () => navigation.live()), button('历史观察', () => navigation.list()), button('保存当前观察', async () => { await call('historyCheckpoint'); await refresh({ fresh: true }); notify('已保存当前观察，可在历史列表查看'); }), button('校验历史', async () => { const result = await call('historyVerify'); notify(`历史校验通过：${result.recordCount} 条记录`); }));
   section.append(toolbar, status, content); container.append(section); content.hidden = true;
   const unsubscribe = subscribe(value => { latest = value; status.textContent = value.historyError || ''; });
   window.addEventListener('pagehide', () => { navigation.dispose(); unsubscribe(); }, { once: true });

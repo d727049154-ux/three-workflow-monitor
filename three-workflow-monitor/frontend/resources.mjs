@@ -43,7 +43,7 @@ export function mountResources(container, subscribe, refresh) {
     const status = element('p', 'error'); status.setAttribute('role', 'status');
     const save = element('button', 'primary', '保存'); save.type = 'submit';
     const retry = button('使用最新版本重试草稿', async () => {
-      await refresh();
+      await refresh({ fresh: true });
       if (!view?.workspace) throw new Error(view?.workspaceError || '工作区尚未读取');
       revision = view.workspace.revision;
       status.textContent = '已选择最新版本，请核对列表与草稿后再保存。'; retry.hidden = true;
@@ -52,7 +52,7 @@ export function mountResources(container, subscribe, refresh) {
       event.preventDefault(); save.disabled = true;
       try {
         await call(method, { ...args(), expectedRevision: revision });
-        host.replaceChildren(); await refresh(); notify('资源配置已保存');
+        host.replaceChildren(); await refresh({ fresh: true }); notify('资源配置已保存');
       } catch (error) { status.textContent = `${error}。编辑内容仍保留。`; retry.hidden = !String(error).includes('其他窗口'); }
       finally { save.disabled = false; }
     });
@@ -99,7 +99,7 @@ export function mountResources(container, subscribe, refresh) {
     }
     finish(); title.focus();
   }
-  async function mutate(method, args) { await call(method, { ...args, expectedRevision: workspace().revision }); await refresh(); }
+  async function mutate(method, args) { await call(method, { ...args, expectedRevision: workspace().revision }); await refresh({ fresh: true }); }
   function renderList() {
     if (!view?.workspace) { list.replaceChildren(); return; }
     const ws = view.workspace;

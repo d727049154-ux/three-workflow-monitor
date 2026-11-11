@@ -3,10 +3,16 @@ use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::{
     path::PathBuf,
-    sync::{Arc, Condvar, Mutex},
+    sync::{
+        atomic::{AtomicBool, Ordering},
+        Arc, Condvar, Mutex,
+    },
 };
 use tauri::{Emitter, Manager};
 use tauri_plugin_dialog::DialogExt;
+
+// 退出闸门：tao 事件循环进入 Destroyed 后再做窗口操作会 panic（cannot move state from Destroyed）。
+pub static EXITING: AtomicBool = AtomicBool::new(false);
 
 #[derive(Clone, Copy, Debug, Deserialize, Serialize, PartialEq)]
 #[serde(deny_unknown_fields)]
@@ -37,6 +43,14 @@ impl Bounds {
             y: self.y.clamp(area.y, area.y + (area.height - height) as i32),
             width,
             height,
+        }
+    }
+    pub fn scaled(self, scale: f64) -> Self {
+        Self {
+            x: (self.x as f64 * scale).round() as i32,
+            y: (self.y as f64 * scale).round() as i32,
+            width: ((self.width as f64 * scale).round() as u32).max(1),
+            height: ((self.height as f64 * scale).round() as u32).max(1),
         }
     }
     pub fn snap(self, area: Self, side: &str) -> Self {
@@ -105,10 +119,12 @@ pub struct WindowStore {
     path: PathBuf,
     pub preferences: Preferences,
     pub warning: Option<String>,
+    pub fresh: bool,
 }
 impl WindowStore {
     pub fn load(data_dir: PathBuf) -> Self {
         let path = data_dir.join("windows.json");
+        let existed = path.exists();
         let result = storage::read::<Preferences>(&path).and_then(|value| {
             let value = value.unwrap_or_default();
             if value.schema != "workflow-windows/1"
@@ -131,11 +147,13 @@ impl WindowStore {
                 path,
                 preferences,
                 warning: None,
+                fresh: !existed,
             },
             Err(error) => Self {
                 path,
                 preferences: Preferences::default(),
                 warning: Some(error),
+                fresh: false,
             },
         }
     }
@@ -170,7 +188,21 @@ impl Writes {
     pub fn drain(&self) {
         if let Ok(mut state) = self.state.lock() {
             state.0 = true;
-            let _guard = self.done.wait_while(state, |state| state.1 > 0);
+            // 有界等待：导出等交互可能长期占用写入名额，不能无限阻塞退出。
+            let deadline = std::time::Instant::now() + std::time::Duration::from_secs(5);
+            loop {
+                if state.1 == 0 {
+                    break;
+                }
+                let left = deadline.saturating_duration_since(std::time::Instant::now());
+                if left.is_zero() {
+                    break;
+                }
+                match self.done.wait_timeout(state, left) {
+                    Ok((guard, _)) => state = guard,
+                    Err(_) => break,
+                }
+            }
         }
     }
 }
@@ -253,6 +285,7 @@ pub fn state(app: &tauri::AppHandle, label: &str) -> Result<Value, String> {
     )
 }
 pub fn request_quit(app: tauri::AppHandle) {
+    EXITING.store(true, Ordering::SeqCst);
     tauri::async_runtime::spawn(async move {
         let writes = app.state::<Arc<Writes>>().inner().clone();
         let _ = tauri::async_runtime::spawn_blocking(move || writes.drain()).await;
@@ -265,6 +298,9 @@ pub fn request_quit(app: tauri::AppHandle) {
     });
 }
 pub async fn action(app: &tauri::AppHandle, label: &str, action: &str) -> Result<Value, String> {
+    if EXITING.load(Ordering::SeqCst) {
+        return Err("应用正在退出".into());
+    }
     if action == "help" {
         let data_dir = app
             .state::<crate::SharedBackend>()
@@ -382,15 +418,24 @@ pub async fn action(app: &tauri::AppHandle, label: &str, action: &str) -> Result
     Ok(value)
 }
 pub fn initialize(app: &tauri::AppHandle) -> Result<(), String> {
-    let (main, dock) = {
+    let (mut main, dock, fresh) = {
         let store = app.state::<SharedWindows>();
         let store = store.lock().map_err(|_| "窗口配置已中断")?;
         (
             store.preferences.main.clone(),
             store.preferences.dock.clone(),
+            store.fresh,
         )
     };
     let window = app.get_webview_window("main").ok_or("主窗口不存在")?;
+    if fresh {
+        // 默认 bounds 按逻辑像素书写；首启动换算为物理像素再应用，避免高缩放下窗口偏小。
+        let scale = window.scale_factor().map_err(|e| e.to_string())?;
+        main.bounds = main.bounds.scaled(scale);
+        let store = app.state::<SharedWindows>();
+        let mut guard = store.lock().map_err(|_| "窗口配置已中断")?;
+        guard.preferences.main = main.clone();
+    }
     apply(&window, &main, &areas(app)?)?;
     if !main.visible && dock.visible {
         window.hide().map_err(|e| e.to_string())?;
@@ -489,6 +534,10 @@ pub fn observe_while_hidden(app: tauri::AppHandle) {
 pub fn event(window: &tauri::Window, event: &tauri::WindowEvent) {
     let app = window.app_handle();
     if let tauri::WindowEvent::CloseRequested { api, .. } = event {
+        if EXITING.load(Ordering::SeqCst) {
+            // 关机/注销/退出过程中放行真实关闭，绝不再触发窗口操作。
+            return;
+        }
         api.prevent_close();
         let app = app.clone();
         let label = window.label().to_string();

@@ -17,7 +17,7 @@ async function addSource(kind, refresh) {
   if (!path) return;
   if (kind === 'progress') {
     await call('configureSources', { expectedRevision: view.sourcesRevision, sources: [...view.sources, { id: crypto.randomUUID(), kind, path }] });
-    await refresh();
+    await refresh({ fresh: true });
     return;
   }
   const candidates = await call('discoverSources', { path });
@@ -27,7 +27,7 @@ async function addSource(kind, refresh) {
     const row = button(candidate.title || candidate.threadId, async () => {
       await call('configureSources', { expectedRevision: view.sourcesRevision, sources: [...view.sources, { ...candidate, id: crypto.randomUUID(), kind, path }] });
       candidateHost.replaceChildren();
-      await refresh();
+      await refresh({ fresh: true });
     }, 'candidate');
     row.append(element('small', '', `${candidate.projectRoot} · ${candidate.threadId}`));
     candidateHost.append(row);
@@ -79,8 +79,8 @@ export function renderObservation(container, value, refresh) {
     editor.discard = discard;
     row.append(element('span', 'path', `${source.kind === 'codex' ? '聊天' : '项目'} · ${source.path}`), name, button('保存名称', async () => {
       await call('configureSources', { expectedRevision: editor.revision ?? view.sourcesRevision, sources: view.sources.map(item => item.id === source.id ? { ...item, title: name.value.trim() || null } : item) });
-      editor.revision = undefined; discard.hidden = true; await refresh();
-    }), discard, button('移除', async () => { await call('configureSources', { expectedRevision: view.sourcesRevision, sources: view.sources.filter(item => item.id !== source.id) }); await refresh(); }), element('p', 'source-issue error'));
+      editor.revision = undefined; discard.hidden = true; await refresh({ fresh: true });
+    }), discard, button('移除', async () => { await call('configureSources', { expectedRevision: view.sourcesRevision, sources: view.sources.filter(item => item.id !== source.id) }); await refresh({ fresh: true }); }), element('p', 'source-issue error'));
     state.sources.set(source.id, editor);
   }
   if (state.sourceKey !== sourceKey) { sourceList.replaceChildren(...value.sources.map(source => state.sources.get(source.id).row)); state.sourceKey = sourceKey; }
@@ -111,14 +111,16 @@ export function renderObservation(container, value, refresh) {
   const orderKey = ordered.map(task => `${rank(task)}:${task.id}`).join('|');
   if (state.orderKey !== orderKey) {
     const focus = document.activeElement;
+    const scroll = list.scrollTop;
     let group; const nodes = [];
     for (const task of ordered) { const next = rank(task); if (group !== next) { nodes.push(element('h2', 'task-group', ['需要介入', '正在推进', '最近结束', '执行待同步'][next])); group = next; } nodes.push(state.rows.get(task.id)); }
     list.replaceChildren(...nodes);
+    list.scrollTop = scroll;
     if (ordered.some(task => state.rows.get(task.id) === focus)) focus.focus({ preventScroll: true });
     state.orderKey = orderKey;
   }
   for (const id of state.rows.keys()) if (!value.tasks.some(task => task.id === id)) state.rows.delete(id);
-  const task = value.tasks.find(item => item.id === selected);
+  const task = value.tasks.find(item => item.id === selected) ?? ordered[0];
   const host = container.querySelector('.detail-host');
   // Observation timestamps change on every poll; they do not invalidate the reading DOM.
   const key = JSON.stringify(task ? { ...task, observedAt: undefined, sourceHealth: { ...task.sourceHealth, observedAt: undefined } } : null);

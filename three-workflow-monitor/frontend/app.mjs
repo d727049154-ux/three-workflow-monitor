@@ -12,8 +12,10 @@ const focusByPanel = new Map();
 const dock = document.body.dataset.view === 'dock';
 const listeners = new Set();
 export function subscribe(listener) { listeners.add(listener); if (latest) listener(latest); return () => listeners.delete(listener); }
-export function refresh() {
-  if (pending) return pending;
+export function refresh(options) {
+  const force = options?.fresh === true;
+  // 变更后的读取不能复用变更前发起的那次（会拿到旧快照）；等它结束后再补一次。
+  if (pending) return force ? pending.catch(() => {}).then(() => refresh({ fresh: true })) : pending;
   pending = call('refresh').then(value => {
     latest = value;
     if (!historyView || historyView.isLive) renderObservation(document.getElementById('observation'), value, refresh);
@@ -38,7 +40,7 @@ function showPanel(panel) {
 document.addEventListener('focusin', event => { const panel = event.target.closest('#observation, #workflows, #resources, #history'); if (panel) focusByPanel.set(panel.id, event.target); });
 for (const button of document.querySelectorAll('[data-panel]')) button.addEventListener('click', () => {
   const panel = button.dataset.panel;
-  if (panel === 'history') { showPanel(panel); if (historyView.isLive) historyView.reopen(); if (dock && document.body.dataset.expanded !== 'true') windowAction('expand').catch(error => notify(String(error))); }
+  if (panel === 'history') { if (dock && document.body.dataset.expanded !== 'true') windowAction('expand').catch(error => notify(String(error))); showPanel(panel); if (historyView?.isLive) historyView.reopen(); }
   else { showPanel(panel); historyView.live(); }
 });
 document.getElementById('refresh').addEventListener('click', refresh);
@@ -52,6 +54,7 @@ function presentWindow(value) {
   const pin = document.getElementById('pin'); if (pin) { pin.setAttribute('aria-pressed', String(p.pinned)); pin.textContent = p.pinned ? '取消置顶' : '置顶'; }
   const compact = document.getElementById('compact'); if (compact) { compact.setAttribute('aria-pressed', String(p.compact)); compact.textContent = p.compact ? '完整' : '摘要'; }
   const expand = document.getElementById('expand'); if (expand) { expand.setAttribute('aria-expanded', String(p.expanded)); expand.textContent = p.expanded ? '收起' : '展开'; }
+  if (dock && !p.expanded && historyView) historyView.live();
   if (p.compact && historyView) { historyView.live(); showPanel('observation'); }
   if (value.warning) notify(`窗口位置无法保存：${value.warning}`);
 }

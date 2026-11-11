@@ -77,7 +77,7 @@ export function mountWorkflows(container, subscribe, refresh) {
     save.type = 'submit';
     const conflict = element('p', 'error');
     const retry = button('使用最新版本重试草稿', async () => {
-      await refresh();
+      await refresh({ fresh: true });
       if (!view.workspace) throw new Error(view.workspaceError);
       revision = view.workspace.revision;
       conflict.textContent = '已选择最新版本；请对照上方工作流检查草稿，再保存。';
@@ -93,7 +93,7 @@ export function mountWorkflows(container, subscribe, refresh) {
         draft = null;
         editor.replaceChildren();
         notify('工作流已保存');
-        await refresh();
+        await refresh({ fresh: true });
       } catch (cause) {
         conflict.textContent = `${cause}。编辑内容仍保留。`;
         retry.hidden = !String(cause).includes('其他窗口');
@@ -119,7 +119,7 @@ export function mountWorkflows(container, subscribe, refresh) {
         card.append(element('p', 'hint', `${stage.label} · ${count} 个任务`));
       }
       card.append(button('编辑', () => edit(flow)), button(flow.paused ? '恢复观察' : '暂停观察', async () => {
-        await call('workflowPause', { id: flow.id, paused: !flow.paused, expectedRevision: view.workspace.revision }); await refresh();
+        await call('workflowPause', { id: flow.id, paused: !flow.paused, expectedRevision: view.workspace.revision }); await refresh({ fresh: true });
       }), button('接入模板', async () => {
         const result = await call('workflowPrompt', { id: flow.id });
         const text = element('textarea');
@@ -129,7 +129,7 @@ export function mountWorkflows(container, subscribe, refresh) {
         prompt.replaceChildren(element('h3', '', '复制给当前项目的 Agent'), text, button('复制模板', () => native('plugin:clipboard-manager|write_text', { text: result.prompt })), button('收起模板', () => prompt.replaceChildren()));
       }), button('删除', async () => {
         if (!window.confirm(`删除工作流「${flow.title}」？来源和进度文件继续保留。`)) return;
-        await call('workflowDelete', { id: flow.id, expectedRevision: view.workspace.revision }); await refresh();
+        await call('workflowDelete', { id: flow.id, expectedRevision: view.workspace.revision }); await refresh({ fresh: true });
       }));
       list.append(card);
     }
